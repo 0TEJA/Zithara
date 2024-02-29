@@ -1,4 +1,3 @@
-// App.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
@@ -38,7 +37,13 @@ function App() {
   };
 
   const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
+    const searchTerm = e.target.value;
+    setSearchTerm(searchTerm);
+    // Reset page to 1 and sorting when search term is cleared
+    if (searchTerm === '') {
+      setPage(1);
+      setSortBy(''); // Reset sorting
+    }
   };
 
   return (
@@ -97,3 +102,37 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

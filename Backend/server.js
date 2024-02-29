@@ -1,4 +1,4 @@
-// server.js
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const { Client } = require('pg');
@@ -25,21 +25,24 @@ app.get('/customers', async (req, res) => {
   const { page = 1, sortBy, search } = req.query;
   const offset = (page - 1) * 20;
 
-  let query = `SELECT sno, customer_name, age, phone, location, created_at::date as date, created_at::time as time FROM users order by sno OFFSET ${offset} LIMIT 20`;
+  let query = `SELECT sno, customer_name, age, phone, location, created_at::date as date, created_at::time as time FROM users`;
 
-  if (sortBy === 'date') {
-    query = `SELECT sno, customer_name, age, phone, location, created_at::date as date, created_at::time as time FROM users ORDER BY DATE(created_at) ASC OFFSET ${offset} LIMIT 20`;
-  } else if (sortBy === 'time') {
-    query = `SELECT sno, customer_name, age, phone, location, created_at::date as date, created_at::time as time FROM users ORDER BY created_at::time ASC OFFSET ${offset} LIMIT 20`;
-  }
-
+  // Apply search filter
   if (search) {
-    query = `SELECT sno, customer_name, age, phone, location, created_at::date as date, created_at::time as time 
-    FROM users 
-    WHERE customer_name ILIKE '${search}%' OR location ILIKE '${search}%' 
-    OFFSET ${offset} LIMIT 20
-    `;
+    query += ` WHERE customer_name ILIKE '${search}%' OR location ILIKE '${search}%'`;
   }
+
+  // Apply sorting
+  if (sortBy === 'date') {
+    query += ` ORDER BY DATE(created_at) ASC`;
+  } else if (sortBy === 'time') {
+    query += ` ORDER BY created_at::time ASC`;
+  } else {
+    // Default sorting by sno
+    query += ` ORDER BY sno ASC`;
+  }
+
+  query += ` OFFSET ${offset} LIMIT 20`;
 
   try {
     const result = await client.query(query);
@@ -54,3 +57,5 @@ app.get('/customers', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+ 
