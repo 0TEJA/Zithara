@@ -1,0 +1,110 @@
+/* Default styles for desktop */
+.container {
+  height: auto;
+  padding: 25px 10%;
+  overflow: hidden;
+  background-color: #F5F7F8;
+}
+
+.sort-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px; /* Increased margin */
+}
+
+.sort-box input {
+  width: 300px; /* Reduced width */
+  height: 40px; /* Increased height */
+  font-size: 16px; /* Increased font size */
+  padding: 0 10px; /* Adjusted padding */
+  border: 2px solid #ccc; /* Changed border */
+  border-radius: 5px; /* Added border radius */
+}
+
+.sort-button button {
+  width: 150px;
+  height: 40px; /* Increased height */
+  padding: 7px 10px;
+  margin-left: 10px; /* Adjusted margin */
+  background-color: #474F7A;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.sort-button button:hover {
+  background-color: #394163; /* Darker color on hover */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid #ccc; /* Changed border */
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Updated box shadow */
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+table th {
+  background-color: #1F2544;
+  color: white;
+  padding: 12px; /* Increased padding */
+  text-align: left;
+}
+
+th,
+td {
+  padding: 12px; /* Increased padding */
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.bottom-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Increased margin */
+}
+
+.bottom-box button {
+  width: 150px;
+  height: 50px;
+  padding: 7px 10px;
+  margin: 0 10px; /* Adjusted margin */
+  background-color: #474F7A;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Media query for tablets */
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 25px 5%; /* Adjusted padding */
+  }
+}
+
+/* Media query for smartphones */
+@media only screen and (max-width: 480px) {
+  .sort-box input {
+    width: 100%; /* Full width on smaller screens */
+  }
+
+  .sort-button button {
+    width: calc(50% - 10px); /* Adjusted width */
+    margin-left: 0; /* Removed left margin */
+    margin-bottom: 10px; /* Added bottom margin */
+  }
+
+  .bottom-box button {
+    width: calc(50% - 10px); /* Adjusted width */
+    margin: 0; /* Removed margin */
+  }
+}
